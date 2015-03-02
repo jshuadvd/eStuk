@@ -21,7 +21,8 @@ class BooksController < ApplicationController
   end
 
   def edit
-  end
+    authorize! :manage, @book
+  end 
 
   def create
     @book = current_user.books.new(book_params)
@@ -30,11 +31,13 @@ class BooksController < ApplicationController
   end
 
   def update
+    authorize! :manage, @book
     @book.update(book_params)
     respond_with(@book)
   end
 
   def destroy
+    authorize! :manage, @book
     @book.destroy
     respond_with(@book)
   end
