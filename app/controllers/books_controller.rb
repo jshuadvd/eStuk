@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy] 
+
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
@@ -21,7 +24,7 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.new(book_params)
     @book.save
     respond_with(@book)
   end
