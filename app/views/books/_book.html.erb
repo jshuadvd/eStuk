@@ -4,9 +4,10 @@
 
   	<%= link_to book_path(book) do %>
 
-  	<%= image_tag "book.jpg", class: "img-responsive" %>
+  	<%= image_tag book.image.url(:original), class: "img-responsive" %>
 
 	<% end %>
+
 
 	<div class="caption">
 
